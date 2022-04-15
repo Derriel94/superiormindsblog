@@ -1,0 +1,58 @@
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import SignUpForm from "./SignUpForm";
+  
+
+const EditBlogger = (props) => {
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    rollno: "",
+  });
+    
+
+  const onSubmit = (studentObject) => {
+    axios
+      .put(
+        "http://localhost:4000/students/update-student/" +
+          props.match.params.id,
+        bloggerObject
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Blogger successfully updated");
+          props.history.push("/student-list");
+        } else Promise.reject();
+      })
+      .catch((err) => alert("Something went wrong"));
+  };
+  
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:3001/blogger/update-blogger/" 
+        + props.match.params.id
+      )
+      .then((res) => {
+        const { name, email, rollno } = res.data;
+        setFormValues({ name, email, rollno });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  
+ 
+  return (
+    <SignUpForm
+      initialValues={formValues}
+      onSubmit={onSubmit}
+      enableReinitialize
+    >
+      Update Blogger
+    </SignUpForm>
+  );
+};
+  
+
+export default EditBlogger;
