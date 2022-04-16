@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+
+}
+.logo {
+	font-weight: bolder;
+	font-size: 64px;
+}
+.minimenu {
+	height: 40px;
+	width: 40px;
+}
+.minimenu hr {
+	border-top: 1px solid red;
+}
+.nav {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  padding-top: 80px;
+  padding-right: 20vw;
+  padding-left:  20vw;
+  margin-bottom:  80px;
+}
+.nav-left {
+  display: flex;
+  justify-content: space-around;
+}
+.nav-left .logo:link {
+  color: black;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.nav-right div {
+  margin: 10px;
+  cursor: pointer;
+}
+.nav-right div:hover {
+  margin: 10px;
+  cursor: pointer;
+  border-bottom: 2px black solid;
+}
