@@ -8,8 +8,13 @@ const Home = () => {
 
 	return (
 	<div className="home">
-	<img className="header-image"alt="superiorheader" src="./header.jpg" />
-    <SignUpForm />
+		<div className="header-image-container">
+			<img className="header-image"alt="superiorheader" src="./header.jpg" />
+    	</div>
+    	<div className="logo-container">
+    		<img className="logo" src="./logo.png"/>
+    	</div>
+    	<SignUpForm />
 	
 	</div>
 			

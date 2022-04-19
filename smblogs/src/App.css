@@ -1,11 +1,34 @@
+html,body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+}
 .App {
   text-align: center;
 }
-.header {
+/*Header*/
+.header-container {
+  max-height: 20vh;
+  max-width: 100%;
+}
+.header-text {
+  width: 100vw;
+  font-weight: bolder;
+  font-size: 64px;
+} 
+@media (max-width: 450px) {
+  .header-text {
+    font-size: 32px;
+  }
+}
 
+.header-image-container {
+  max-width: 100%;
 }
 
 .header-image {
-  height: 150px;
+  height: 20vh;
   width: 100vw;
 }
