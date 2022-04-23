@@ -1,7 +1,7 @@
 html,body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: auto;
   width:  100%;
   background: linear-gradient(to bottom right, rgba(83, 177, 210, 1.0), rgba(255, 255, 255, 1.0));
 }
@@ -67,7 +67,11 @@ html,body {
   text-shadow: 2px 2px rgba(130, 39, 181, 1.0);
   flex-grow: 3;
  }
-
+@media only screen and (max-width: 550px) {
+  .header-container div {
+    font-size: 2rem;
+  }
+}
 .nav {
   display: flex;
   justify-content: space-around;
@@ -84,22 +88,29 @@ html,body {
   cursor: pointer;
   border-bottom: 2px solid rgb(130, 39, 181);
 }
+@media only screen and (max-width: 550px) {
+  .nav h1 {
+    font-size: 1.5rem;
+  }
+}
 .home {
 /*  background: linear-gradient(to bottom right, rgba(83, 177, 210, 1.0), rgba(255, 255, 255, 1.0));
-*/  grid-area: home;
+*/ grid-area: home;
+  height: auto;
+  width: 100%;
   display: grid;
-  height: 100vh;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
   "sidebar main main"
+  "sidebar blog1 blog2"
   "sidebar blog1 blog2";
   grid-gap: .5rem;
 }
 @media only screen and (max-width: 550px) {
   .home {
   grid-template-columns: 1fr;
-  grid-template-rows: 2fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr .5fr 1fr;
   grid-template-areas: 
   "main"
   "blog1"

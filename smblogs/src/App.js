@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; 
 import Home from "./Components/Home/Home.js";  
+import Blogs from "./Components/Blogs/Blogs.js";
 import Nav from "./Components/Nav/Nav.js"; 
 import SignUpForm from "./Components/Home/SignUpForm.js"; 
 
@@ -18,6 +19,7 @@ const App = () => {
         <Nav /> 
           <Routes>
             <Route exact path="/" element={<Home />} />
+            <Route path="/blogs" element={<Blogs />} />
           </Routes> 
         <div className="footer">
           <Link to="/" style={{color: "papayawhip"}}><h1>Superior Minds</h1></Link>
@@ -27,7 +29,7 @@ const App = () => {
             on when new blogs are out, as well as music and voiceovers!</div>
             <h1>Social Media</h1>
             <div>Instagram: Mactract (Photography)</div>
-            <div>Linkdein: Chris Mac</div>
+            <div>Linkdein: Mad Mac</div>
             <div>YouTube: Chris Mac</div>
             <div>Instagram: blaketheruler</div>      
           </div>  
