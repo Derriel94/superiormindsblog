@@ -15,10 +15,10 @@ const Nav = () => {
 		<div className="nav"> 
            {/* <button onClick={handleHamburgerMenuClick}id="minibutton" className="minimenu">
             </button>*/} 
-          <h1><Link to="/blogs" style={{ textDecoration: 'none', color: 'black' }}>Blogs</Link></h1>
-          <h1><Link to="/music" style={{ textDecoration: 'none', color: 'black' }}>Music</Link></h1>
-          <h1><Link to="/voiceovers" style={{ textDecoration: 'none', color: 'black' }}>VoiceOver</Link></h1>
-          <h1><Link to="/contact" style={{ textDecoration: 'none', color: 'black' }}>Contact Mac</Link></h1>  
+          <h1><Link to="/blogs" style={{ textDecoration: 'none', color: 'papayawhip' }}>Blogs</Link></h1>
+          <h1><Link to="/music" style={{ textDecoration: 'none', color: 'papayawhip' }}>Music</Link></h1>
+          <h1><Link to="/voiceovers" style={{ textDecoration: 'none', color: 'papayawhip' }}>VoiceOver</Link></h1>
+          <h1><Link to="/contact" style={{ textDecoration: 'none', color: 'papayawhip' }}>Contact Mac</Link></h1>  
       </div>
 			
 		);

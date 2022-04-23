@@ -31,7 +31,7 @@ const SignUpForm = (props) => {
           <br/>
           <label>Remember me</label>
           <input type="checkbox" name="remember" />
-          <p>By creating an account you agree to our <a href="https://ghost-code.herokuapp.com/">Terms & Privacy</a>.</p>
+          <p className="terms">By creating an account you agree to our <a href="https://ghost-code.herokuapp.com/">Terms & Privacy</a>.</p>
           <div class="">
             <button type="submit" class="signupbtn">Sign Up</button>
           </div>

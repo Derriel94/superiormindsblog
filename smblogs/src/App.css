@@ -3,21 +3,23 @@ html,body {
   padding: 0;
   height: 100%;
   width:  100%;
+  background: linear-gradient(to bottom right, rgba(83, 177, 210, 1.0), rgba(255, 255, 255, 1.0));
 }
 .App {
-   text-shadow: 2px 2px #ff0000;
   text-align: center;
   display: grid;
   height: 100vh;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas: 
-  "header header header header header"
-  "nav nav nav nav nav"
-  "home home home home home"
-  "footer footer footer footer footer";
+  "header header header header"
+  "nav nav nav nav"
+  "home home home home"
+  "footer footer footer footer";
+  grid-gap: .3rem;
+  position: relative;
 }
-/*@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 550px) {
   .App {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 0.3fr 1fr 1fr;
@@ -25,25 +27,52 @@ html,body {
   "header"
   "nav"
   "home"
-  "logo"
+  "footer"
   }
-}*/
+}
 .header-container {
   grid-area: header;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
 }
-
-
-.header-container h1 {
+#signin {
+  padding: 20px;
+/*  position: absolute;
+  right: 80px;
+  top: 0;*/
+}
+#signin:hover {
+  color: rgba(130, 39, 181, 1.0);
+  text-decoration: underline;
+}
+#register {
+  padding: 20px;
+/*  position: absolute;
+  right: 0;
+  top: 0;*/
+}
+#register:hover {
+  color: rgba(130, 39, 181, 1.0);
+  text-decoration: underline;
+}
+@media only screen and (max-width: 550px) {
+  .signin {
+    position: relative;
+    left: 100px;
+  }
+}
+.header-container div {
   font-size: 3rem;
-
+  text-shadow: 2px 2px rgba(130, 39, 181, 1.0);
+  flex-grow: 3;
  }
 
 .nav {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  text-shadow: 1px 2px rgba(130, 39, 181, 1.0);
   grid-area: nav;
 }
 .nav h1 {
@@ -53,10 +82,11 @@ html,body {
 .nav h1:hover {
   margin: 10px;
   cursor: pointer;
-  border-bottom: 2px black solid;
+  border-bottom: 2px solid rgb(130, 39, 181);
 }
 .home {
-  grid-area: home;
+/*  background: linear-gradient(to bottom right, rgba(83, 177, 210, 1.0), rgba(255, 255, 255, 1.0));
+*/  grid-area: home;
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr 1fr 1fr;
@@ -65,35 +95,80 @@ html,body {
   "sidebar main main"
   "sidebar blog1 blog2";
   grid-gap: .5rem;
+}
+@media only screen and (max-width: 550px) {
+  .home {
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr 1fr 1fr;
+  grid-template-areas: 
+  "main"
+  "blog1"
+  "sidebar"
+  }
 
 }
 .sidebar {
-  background: red;
+/* Created with https://www.css-gradient.com */
+/*background: rgba(130, 39, 181, 1.0);*/
+  border-radius: 20px;
+  padding:  10px;
+  background: linear-gradient(to bottom right, rgba(130, 39, 181, 1.0), rgba(225, 193, 255, 1.0));
   grid-area: sidebar;
 }
 .sidebar img {
   max-width: 100%;
   height: auto;
+  border: 2px papayawhip solid;
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 550px) {
+  .sidebar img {
+    width: 50%;
+    height: auto;
+  }
 }
 .main {
-  background: papayawhip;
+  background: linear-gradient(to bottom right, rgba(130, 39, 181, 1.0), rgba(225, 193, 255, 1.0));
   grid-area: main;
+  border-radius: 20px;
 }
 .blog1 {
   grid-area: blog1;
+  border-radius: 20px;
+  background: linear-gradient(to bottom right, rgba(130, 39, 181, 1.0), rgba(225, 193, 255, 1.0));
+
 }
 .blog2 {
   grid-area: blog2;
+  border-radius: 20px;
+  background: linear-gradient(to bottom right, rgba(130, 39, 181, 1.0), rgba(225, 193, 255, 1.0));
+}
+@media only screen and (max-width: 550px) {
+  .blog2 {
+    display: none;
+  }
+
 }
 .footer {
+  padding: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center; 
-  background: yellow;
+  text-shadow: 1px 1px rgba(130, 39, 181, 1.0);
   grid-area: footer;
+}
+.footer p { width: 100px; }
+
+@media only screen and (max-width: 550px) {
+  .footer {
+    flex-direction: column;
+  }
+
 }
 .footer .nav {
   font-size: .5rem;
   display: inline-flex;
-  flex-direction: column;
-}
+ 
+}/* Created with https://www.css-gradient.com */
