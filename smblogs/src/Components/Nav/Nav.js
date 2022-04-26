@@ -15,6 +15,7 @@ const Nav = () => {
 		<div className="nav"> 
            {/* <button onClick={handleHamburgerMenuClick}id="minibutton" className="minimenu">
             </button>*/} 
+          <h1><Link to="/editor" style={{ textDecoration: 'none', color: 'blue' }}>EDITOR</Link></h1>
           <h1><Link to="/blogs" style={{ textDecoration: 'none', color: 'papayawhip' }}>Blogs</Link></h1>
           <h1><Link to="/music" style={{ textDecoration: 'none', color: 'papayawhip' }}>Music</Link></h1>
           <h1><Link to="/voiceovers" style={{ textDecoration: 'none', color: 'papayawhip' }}>VoiceOver</Link></h1>

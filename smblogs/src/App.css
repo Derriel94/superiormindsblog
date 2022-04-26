@@ -183,3 +183,7 @@ html,body {
   display: inline-flex;
  
 }/* Created with https://www.css-gradient.com */
+.file-upload-container {
+  display: flex;
+  justify-content: center;
+}
