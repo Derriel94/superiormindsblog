@@ -23,26 +23,40 @@ const FileUploadComponent = () => {
 
 
 	const handleBlogSubmit = (e) => {
-		var formData = new FormData();
-		formData.append('file', blogImage);
-
-		fetch('http://localhost:3001/editor', {
-			method: 'post',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify ({
-				textArea: textArea,
-				blogTitle: blogTitle,
-			}),	
-		})
-		.then(()=> {
-			fetch('http://localhost:3001/upload', {
+			
+			 fetch('http://localhost:3001/editor', {
 				method: 'post',
-				body: formData,
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify ({
+					textArea: textArea,
+					blogTitle: blogTitle,
+				}),	
 			})
-		})
-		.then(() => {
-			alert('I have submited Successfully, I do not know if It can be retrieved yet')
-		});
+			.then((response)=> {
+				console.log(response)
+				if (response.status === 400) {
+					 return alert('There was an error')
+				} else {
+					alert('Title and Blog were submited')
+				}
+
+			})
+			.then(() => {
+				var formData = new FormData();
+					formData.append('file', blogImage);
+					console.log(Object.keys(formData))
+					if (formData > 0){
+					fetch('http://localhost:3001/upload', {
+					method: 'post',
+					body: formData,
+					}).then(()=>{
+						return alert("Image saved")
+					})
+					} else {
+						return alert("there was no image to save")
+					}				
+			})	
+	
 	}
 
 	return (
