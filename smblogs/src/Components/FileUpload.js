@@ -23,8 +23,10 @@ const FileUploadComponent = () => {
 
 
 	const handleBlogSubmit = (e) => {
-			
-			 fetch('http://localhost:3001/editor', {
+		var formData = new FormData();
+		formData.append('file', blogImage);
+		
+			fetch('http://localhost:3001/editor', {
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify ({
@@ -33,7 +35,6 @@ const FileUploadComponent = () => {
 				}),	
 			})
 			.then((response)=> {
-				console.log(response)
 				if (response.status === 400) {
 					 return alert('There was an error')
 				} else {
@@ -41,21 +42,20 @@ const FileUploadComponent = () => {
 				}
 
 			})
-			.then(() => {
-				var formData = new FormData();
-					formData.append('file', blogImage);
-					console.log(Object.keys(formData))
-					if (formData > 0){
-					fetch('http://localhost:3001/upload', {
-					method: 'post',
-					body: formData,
-					}).then(()=>{
-						return alert("Image saved")
-					})
-					} else {
-						return alert("there was no image to save")
-					}				
-			})	
+			.then(()=>{
+				fetch('http://localhost:3001/upload', {
+								method: 'post',
+								body: formData,
+								})
+								.then((response)=>{
+									if (response.status === 400) {
+										return alert("there was no image to save")
+									} else {
+										return alert("Image saved")
+									}
+									
+								})
+			})
 	
 	}
 
