@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 //import './Signin.css';
 
 
@@ -7,10 +8,11 @@ const Register = (  ) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-
+  const navigate = useNavigate();
   const onEmailChange = (e) => {setEmail(e.target.value)};
   const onPasswordChange = (e) => {setPassword(e.target.value)};
   const onNameChange = (e) => {setName(e.target.value)};
+
 
   const onSubmitRegister = () => {
     fetch('http://localhost:3001/register', {
@@ -27,18 +29,22 @@ const Register = (  ) => {
         if (response.status === 400){
           return alert('You did not finish your login creditials. Refresh page and start over!')
         //try event default here
-        } else {
-          //display editor link
+        } else if (response.status === 200) {
+          return alert('Thanks for Registering You will be redirected to the blogs')
+          // navigate("/blogs");
+        } 
+          //display editor link    
           //and or redirect to editor page
-        }
-
       })
-      .then(user => {
-      if (user.id) {
+      .then(res => {
+        alert("You are now an editor");
+        navigate("/editor");
+      })
+    //   .then(user => {
+    //   if (user.id) {
     
-      }
-    });
-    
+    //   }
+    // });     
   };
 
   return(

@@ -93,6 +93,9 @@ html,body {
     font-size: 1.5rem;
   }
 }
+#edit {
+  display: none;
+}
 .home {
 /*  background: linear-gradient(to bottom right, rgba(83, 177, 210, 1.0), rgba(255, 255, 255, 1.0));
 */ grid-area: home;
