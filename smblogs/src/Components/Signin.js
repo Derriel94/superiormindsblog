@@ -12,7 +12,7 @@ const Signin = () => {
   const onPasswordChange = (e) => {setPassword(e.target.value)};
 
   const onSubmitSignIn = () => {
-    fetch('https://smart-brain-detector-app.herokuapp.com/signin', {
+    fetch('http://localhost:3001/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -20,11 +20,13 @@ const Signin = () => {
         password: password,
       })
     })
-    .then(response => response.json())
-    .then(user => {
-      if (user.id) {
-  
+    .then(res => {
+      if (res.status === 400) {
+        alert('Wrong Creditials Fool!')
       }
+    })
+    .then(data => {
+      console.log(data.email)
     })
     
   }

@@ -10,6 +10,10 @@ import Editor from "./Components/FileUpload.js";
 
 
 const App = () => {
+  var initialConnection = true;
+    if (initialConnection = true){
+      let initialConnection = false;
+    } 
 
   return (
     <div className="App" style={{color: "papayawhip"}}>
