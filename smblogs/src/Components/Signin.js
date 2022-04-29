@@ -21,12 +21,14 @@ const Signin = () => {
       })
     })
     .then(res => {
+      res.json()
       if (res.status === 400) {
         alert('Wrong Creditials Fool!')
       }
+
     })
     .then(data => {
-      console.log(data.email)
+      console.log(data.user);
     })
     
   }
