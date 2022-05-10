@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //import './Signin.css';
 
@@ -25,21 +25,21 @@ const Register = (  ) => {
         
       })
     })
+     .then(res => res.json())
       .then(response => {
         if (response.status === 400){
-          return alert('You did not finish your login creditials. Refresh page and start over!')
+          alert('You did not finish your login creditials. Refresh page and start over!')
+           navigate("/register");
         //try event default here
         } else if (response.status === 200) {
-          return alert('Thanks for Registering You will be redirected to the blogs')
+           alert('Thanks for Registering You will be redirected to the blogs')
           // navigate("/blogs");
         } 
           //display editor link    
           //and or redirect to editor page
       })
-      .then(res => {
-        alert("You are now an editor");
-        navigate("/editor");
-      })
+        // navigate("/editor");
+
     //   .then(user => {
     //   if (user.id) {
     

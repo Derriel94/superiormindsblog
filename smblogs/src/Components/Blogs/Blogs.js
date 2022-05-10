@@ -4,6 +4,12 @@ import "./Blogs.css";
 
 
 const Blogs = () => {
+const grabBlogs = () => {
+    fetch('http://localhost:3001/blogs')
+    .then(response => {
+    	alert('grabed data')
+    })
+  };
 
 	return (
 		<div className="home blogs">

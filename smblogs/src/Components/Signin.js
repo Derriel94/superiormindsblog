@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 //import './Signin.css';
 
 
@@ -7,7 +7,7 @@ const Signin = () => {
 
   const [email, setEmail] = useState('ThisisYourGrandaddy.com');
   const [password, setPassword] = useState('Type Your Password Grandson');
-
+  const navigate = useNavigate();
   const onEmailChange = (e) => {setEmail(e.target.value)};
   const onPasswordChange = (e) => {setPassword(e.target.value)};
 
@@ -20,16 +20,18 @@ const Signin = () => {
         password: password,
       })
     })
+    .then(res => res.json())
     .then(res => {
-      res.json()
-      if (res.status === 400) {
-        alert('Wrong Creditials Fool!')
-      }
+      if (res.message) {
+        alert('Wrong Creditials Fool!');
+        navigate("/signin");
+      } else {
+        alert(`${res.name} you are signed In`);
+        navigate("/blogs");
+       console.log(res.name);
+     }
+    })
 
-    })
-    .then(data => {
-      console.log(data.user);
-    })
     
   }
 
