@@ -14,7 +14,7 @@ const Register = (  ) => {
   const onNameChange = (e) => {setName(e.target.value)};
 
 
-  const onSubmitRegister = () => {
+  const onSubmitRegister = (e) => {
     fetch('http://localhost:3001/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -25,15 +25,16 @@ const Register = (  ) => {
         
       })
     })
-     .then(res => res.json())
       .then(response => {
+        response.json()
         if (response.status === 400){
           alert('You did not finish your login creditials. Refresh page and start over!')
-           navigate("/register");
+          window.location.reload(true);
+          navigate("/register");
         //try event default here
         } else if (response.status === 200) {
-           alert('Thanks for Registering You will be redirected to the blogs')
-          // navigate("/blogs");
+           alert('Thanks for Registering Now Lets go sign in!')
+           navigate("/signin");
         } 
           //display editor link    
           //and or redirect to editor page
