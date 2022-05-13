@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from 'axios';
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; 
 import Home from "./Components/Home/Home.js"; 
@@ -15,6 +16,9 @@ const App = () => {
   //   if (initialConnection === true){
   //     let initialConnection = false;
   //   } 
+    Axios.defaults.withCredetials = true;
+ 
+
   const [user, setUser] = useState({
     userId: '',
     name: '',
@@ -35,16 +39,26 @@ const App = () => {
       email: ''
     })
     window.location.reload(true);
-  }
-console.log(user)
+  } 
+
+  useEffect(()=> { 
+      Axios.post('http://localhost:3001/signinsess')
+    .then((response)=> {
+
+           if (response.data.loggedIn === true){
+            console.log(response.data);
+           }
+      
+    });
+  }, []);
   return (
     <div className="App" style={{color: "papayawhip"}}>
       <Router>
         <div className="header-container">
            <div><Link to="/" style={{color: "papayawhip"}}>Superior Minds</Link></div>
-            {user.name  ?
-
-              <p onClick={()=>signOutUser(user)} id="signOut"><p>SignOut</p>{user.name}</p>
+            {user.name  
+            ?
+              <p onClick={()=>signOutUser(user)} id="signOut">SignOut: {user.name}</p>
             :
               <Link to="/signin" style={{color: "papayawhip"}}><p id="signin">SignIn</p></Link>
             }

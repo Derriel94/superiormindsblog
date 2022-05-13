@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 //import './Signin.css';
 
 
@@ -10,34 +11,28 @@ const Signin = ( {loadUser} ) => {
   const navigate = useNavigate();
   const onEmailChange = (e) => {setEmail(e.target.value)};
   const onPasswordChange = (e) => {setPassword(e.target.value)};
-
+Axios.defaults.withCredetials = true;
   const onSubmitSignIn = () => {
-    fetch('http://localhost:3001/signin', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
+    Axios.post('http://localhost:3001/signin',{ 
         email: email,
         password: password,
-      })
     })
-    .then(res=> res.json())
+    // .then(res=> res.json())
     .then(res => {
       if (res.message) {
         alert('Wrong Creditials Fool!');
         navigate("/signin");
-      } else if (res.name === "ChrisMac" && res.userId === 1){
-       alert(`${res.name} You are the Leader lets Go Blog!`);
-       loadUser(res)
-        navigate("/editor")
-       console.log(res.name);
-     } else if (res.name !== "ChrisMac" && res.userId) {
-        alert(`${res.name} you are signed In`);
-        loadUser(res)
+      } else if (res.data[0].name === "ChrisMac" && res.data[0].userId === 1){
+       alert(`${res.data[0].name} You are the Leader lets Go Blog!`);
+       loadUser(res.data[0])
+        // navigate("/editor")
+       console.log(res.data[0].name);
+     } else if (res.data[0].name !== "ChrisMac" && res.data[0].userId) {
+        alert(`${res.data[0].name} you are signed In`);
+        loadUser(res.data[0])
         navigate("/blogs");
      }
-    })
-
-    
+    }) 
   }
 
   return(
