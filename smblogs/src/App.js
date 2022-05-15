@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Axios from 'axios';
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; 
@@ -17,20 +17,27 @@ const App = () => {
   //     let initialConnection = false;
   //   } 
     Axios.defaults.withCredetials = true;
- 
+   const [token, setToken] = useState();
 
-  const [user, setUser] = useState({
+
+  const [user, setUser] = useState(localStorage.getItem('user') === 
+    JSON.stringify({
     userId: '',
     name: '',
     email: ''
-  });
-
+  }));
+  const [username, setUserName] = useState(localStorage.getItem('user')=== JSON.stringify({username: user.name}))
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem('loggedIn') ==='true'
+    );
   const loadUser = (user) => {
     setUser({
       userId: user.userId,
       name: user.name,
       email: user.email,
-    })
+    }) 
+    setIsLoggedIn(true);
+   setUserName(user.name)
   }
   const signOutUser = (user) => {
     setUser({
@@ -38,25 +45,23 @@ const App = () => {
       name: '',
       email: ''
     })
+    setIsLoggedIn('false')
     window.location.reload(true);
   } 
 
-  useEffect(()=> { 
-      Axios.post('http://localhost:3001/signinsess')
-    .then((response)=> {
 
-           if (response.data.loggedIn === true){
-            console.log(response.data);
-           }
-      
-    });
-  }, []);
+ useEffect(()=> {
+  localStorage.setItem('loggedIn',isLoggedIn);
+  localStorage.setItem('user', user.name);
+    
+ },[isLoggedIn, user.name]);
+
   return (
     <div className="App" style={{color: "papayawhip"}}>
       <Router>
         <div className="header-container">
            <div><Link to="/" style={{color: "papayawhip"}}>Superior Minds</Link></div>
-            {user.name  
+            {isLoggedIn
             ?
               <p onClick={()=>signOutUser(user)} id="signOut">SignOut: {user.name}</p>
             :
@@ -70,7 +75,13 @@ const App = () => {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/editor" element={<Editor />} />
             <Route path="/register" element={<Register />} />
+            {!token
+            ?
+            <Route path="/signin" element={<Signin loadUser={loadUser} setToken={setToken}  />} />
+            :
             <Route path="/signin" element={<Signin loadUser={loadUser} />} />
+            } 
+            
           </Routes> 
         <div className="footer">
           <Link to="/" style={{color: "papayawhip"}}><h1>Superior Minds</h1></Link>

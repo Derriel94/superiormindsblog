@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 //import './Signin.css';
@@ -30,7 +30,7 @@ Axios.defaults.withCredetials = true;
      } else if (res.data[0].name !== "ChrisMac" && res.data[0].userId) {
         alert(`${res.data[0].name} you are signed In`);
         loadUser(res.data[0])
-        navigate("/blogs");
+        // navigate("/blogs");
      }
     }) 
   }
